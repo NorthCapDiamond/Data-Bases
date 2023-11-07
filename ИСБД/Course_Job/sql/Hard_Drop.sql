@@ -1,0 +1,10 @@
+drop table if exists s333219."Amount_Of_Beer" cascade;
+drop table if exists s333219."Beer" cascade;
+drop table if exists s333219."Chat" cascade;
+drop table if exists s333219."Employee" cascade;
+drop table if exists s333219."Login" cascade;
+drop table if exists s333219."Client" cascade;
+drop table if exists s333219."Status" cascade;
+drop table if exists s333219."Shopping_Cart" cascade;
+drop table if exists s333219."Online_Pay" cascade;
+drop table if exists s333219."Order" cascade;
