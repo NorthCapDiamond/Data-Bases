@@ -43,7 +43,7 @@ create table if not exists "Client"
 	"Name" text not null,
 	"Date_Of_Birth" date not null,
 	"Phone_Number" varchar(10),
-	"Payment_Way_Id" integer not null,
+	"Payment_Way_Id" integer,
 	"Login_Data_Id" integer not null unique,
 	foreign key ("Payment_Way_Id") references s333219."Online_Pay" ("Pay_Id"),
 	foreign key ("Login_Data_Id") references s333219."Login" ("Pass_Id"),
