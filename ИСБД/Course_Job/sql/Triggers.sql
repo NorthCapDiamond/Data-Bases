@@ -92,17 +92,17 @@ before delete on s333219."Shopping_Cart"
 for each row
 execute function delete_shopping_cart_trigger();
 
-
 -- remove order 
-create or replace procedure delete_cart(id integer)
+CREATE OR REPLACE PROCEDURE delete_cart(id INTEGER)
 AS $$
-begin
-    EXECUTE('DISABLE TRIGGER delete_shopping_cart_trigger ON s333219."Shopping_Cart"');
-    delete from s333219."Shopping_Cart" where "Order_Id" = id;
-    delete from s333219."Amount_Of_Beer" where "Order_Id" = id;
-    EXECUTE('ENABLE TRIGGER delete_shopping_cart_trigger ON s333219."Shopping_Cart"');
-end;
-$$ language plpgsql;
+BEGIN
+    EXECUTE 'ALTER TABLE s333219."Shopping_Cart" DISABLE TRIGGER delete_shopping_cart_trigger';
+    DELETE FROM s333219."Shopping_Cart" WHERE "Order_Id" = id;
+    DELETE FROM s333219."Amount_Of_Beer" WHERE "Order_Id" = id;
+    DELETE FROM s333219."Order" WHERE "Order_Id" = id;
+    EXECUTE 'ALTER TABLE s333219."Shopping_Cart" ENABLE TRIGGER delete_shopping_cart_trigger';
+END;
+$$ LANGUAGE plpgsql;
 
 
 
