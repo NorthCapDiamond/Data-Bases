@@ -45,5 +45,20 @@ before delete on s333219."Shopping_Cart"
 for each row
 execute function delete_shopping_cart_trigger();
 
+-- remove order 
+create or replace function delete_cart()
+RETURNS trigger AS $$
+begin
+    delete from s333219."Shopping_Cart" where "Order_Id" = old."Order_Id";
+    delete from s333219."Amount_Of_Beer" where "Order_Id" = old."Order_Id";
+    RETURN old;
+end;
+
+$$ language plpgsql;
+create trigger delete_shopping_cart_trigger
+before delete on s333219."Order"
+for each row
+execute function delete_cart();
+
 
 
